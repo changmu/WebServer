@@ -1,6 +1,6 @@
 from socket import *
 
-serverPort = 12000
+serverPort = 8080
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind(('', serverPort))
 serverSocket.listen(1)
@@ -10,5 +10,6 @@ while 1:
     connectionSocket, addr = serverSocket.accept()
     sentence = connectionSocket.recv(1024)
     capitalizedSentence = sentence.upper()
-    connectionSocket.send(capitalizedSentence + ', Hello world!')
+    print 'TCP established from', addr
+    connectionSocket.send('Hello World!')
     connectionSocket.close()
